@@ -9,17 +9,17 @@
 FORMULA_TYPES=( "osx" "vs" "ios" "tvos" "android" "emscripten" )
 
 # define the version
-VER=2.7
-FVER=27
+VER=2.13.0
+FVER=2130
 
 # tools for git use
 GIT_URL=http://git.savannah.gnu.org/r/freetype/freetype2.git
-GIT_TAG=VER-2-7
+GIT_TAG=VER-2-13-0
 
 # download the source code and unpack it into LIB_NAME
 function download() {
 	wget --quiet --no-check-certificate https://download.savannah.gnu.org/releases/freetype/freetype-$VER.tar.gz -O freetype-$VER.tar.gz
-	
+
 	tar -xzf freetype-$VER.tar.gz
 	mv freetype-$VER freetype
 	rm freetype*.tar.gz
@@ -58,7 +58,7 @@ function build() {
 		esac
 
 		local TOOLCHAIN=$XCODE_DEV_ROOT/Toolchains/XcodeDefault.xctoolchain
-        
+
         local SDK_PATH=$(xcrun --sdk macosx --show-sdk-path)
 
 		./configure --prefix=$BUILD_TO_DIR --without-bzip2 --with-harfbuzz=no --enable-static=yes --enable-shared=no \
@@ -421,7 +421,7 @@ function copy() {
 	# copy license files
 	rm -rf $1/license # remove any older files if exists
 	mkdir -p $1/license
-	cp -v docs/LICENSE.TXT $1/license/
+	cp -v LICENSE.TXT $1/license/
 	cp -v docs/FTL.TXT $1/license/
 	cp -v docs/GPLv2.TXT $1/license/
 }
