@@ -21,7 +21,9 @@ function download() {
 	wget --quiet --no-check-certificate https://download.savannah.gnu.org/releases/freetype/freetype-$VER.tar.gz -O freetype-$VER.tar.gz
 
 	tar -xzf freetype-$VER.tar.gz
+
 	mv freetype-$VER freetype
+
 	rm freetype*.tar.gz
 }
 
@@ -369,7 +371,7 @@ function build() {
 	    cp apinames $BUILD_DIR/freetype/objs/
 	    emmake make -j${PARALLEL_MAKE}
 	    emmake make install
-	    emcc objs/*.o -o build/$TYPE/lib/libfreetype.bc
+	    emcc objs/*.o -r -o build/$TYPE/lib/libfreetype.bc
 		echo "-----------"
 		echo "$BUILD_DIR"
 
